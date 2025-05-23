@@ -1,0 +1,318 @@
+*import networkx as nx
+import pandas as pd
+import random
+from datetime import datetime, timedelta
+import time
+
+# Lê os dados e garante que os nomes das colunas estão corretos
+rotas = pd.read_csv("rotas.csv")
+jogos = pd.read_csv("jogos.csv")
+rotas.columns = [col.strip() for col in rotas.columns]
+jogos.columns = [col.strip() for col in jogos.columns]
+
+# Se a coluna 'Dia' não contiver o ano, adiciona o ano atual (2025) apenas onde faltar
+mask = jogos['Dia'].str.count('/').eq(1)
+jogos.loc[mask, 'Dia'] = jogos.loc[mask, 'Dia'] + '/2025'
+
+# Converte para datetime com data completa (dia/mês/ano hora:min)
+jogos['datetime'] = pd.to_datetime(
+    jogos['Dia'] + ' ' + jogos['Hora'],
+    format='%d/%m/%Y %H:%M'
+)
+
+# Constantes
+DURACAO_JOGO_MIN = 180
+PROB_BLOQUEIO = 0.05
+PROB_ATRASO = 0.10
+PROB_CAPACIDADE = 0.05
+PROB_CANCELAMENTO = 0.02
+
+# Cria grafo a partir das rotas
+G = nx.MultiDiGraph()
+for _, row in rotas.iterrows():
+    G.add_edge(
+        row['origem'], row['destino'],
+        transporte=row['transporte'],
+        tempo_min=float(row['tempo_min']),
+        preco_eur=float(row['preco_eur']),
+        capacidade=int(row['capacidade']),
+        emissoes_co2=float(row['emissoes_co2']),
+        hora_partida=row['hora_partida']
+    )
+
+# Aplica um imprevisto a uma única aresta
+def imprevisto_em_uma_aresta(d, dep_time):
+    r = random.random()
+    dep_str = dep_time.strftime('%H:%M')
+    if r < PROB_BLOQUEIO:
+        return 'bloqueio', f"Bloqueio na partida às {dep_str}.", None
+    elif r < PROB_BLOQUEIO + PROB_ATRASO:
+        atraso = random.choice([10, 15, 20, 30, 50])
+        return 'atraso', f"Atraso de {atraso} min na partida às {dep_str}.", atraso
+    elif r < PROB_BLOQUEIO + PROB_ATRASO + PROB_CAPACIDADE:
+        reducao = random.choice([20, 50])
+        d['capacidade'] = int(d['capacidade'] * (1 - reducao/100))
+        return 'capacidade', f"Capacidade reduzida em {reducao}% na partida às {dep_str}.", None
+    elif r < PROB_BLOQUEIO + PROB_ATRASO + PROB_CAPACIDADE + PROB_CANCELAMENTO:
+        return 'cancelamento', f"Cancelamento por greve na partida às {dep_str}.", None
+    return None, None, None
+
+# Gera percurso detalhado com possíveis imprevistos
+def gerar_percurso(origem, destinos, num_pessoas, peso):
+    arestas_usadas = []
+    atual = origem
+    for dest in destinos:
+        caminho = nx.shortest_path(G, source=atual, target=dest, weight=peso)
+        for u, v in zip(caminho, caminho[1:]):
+            edges = G.get_edge_data(u, v)
+            melhor = None
+            for d in edges.values():
+                if d['capacidade'] >= num_pessoas and (melhor is None or d[peso] < melhor[peso]):
+                    melhor = d
+            if not melhor:
+                max_cap = max(d['capacidade'] for d in edges.values())
+                print(f"Capacidade insuficiente em {u}->{v}: máximo {max_cap}.")
+                return gerar_percurso(origem, destinos, max_cap, peso)
+            arestas_usadas.append((u, v, melhor))
+        atual = dest
+
+    detalhes = []
+    total = 0
+    current_time = datetime.now()
+    imprevistos_msgs = []
+
+    print("\nInício do percurso:")
+    for u, v, d in arestas_usadas:
+        tipo, msg, atraso = imprevisto_em_uma_aresta(d, current_time)
+        if msg:
+            imprevistos_msgs.append(f"{u}->{v}: {msg}")
+            print(f"Imprevisto em {u}->{v}: {msg}")
+        if tipo in ('bloqueio', 'cancelamento'):
+            print("Reroteamento devido a imprevisto grave.")
+            G.remove_edge(u, v, key=list(G.get_edge_data(u, v).keys())[0])
+            return gerar_percurso(origem, destinos, num_pessoas, peso)
+        if tipo == 'atraso' and atraso:
+            current_time += timedelta(minutes=atraso)
+        dep = current_time
+        arr = dep + timedelta(minutes=d['tempo_min'])
+        detalhes.append((u, v, d['transporte'], dep, arr, d['tempo_min'], d['preco_eur'], d['emissoes_co2']))
+        total += d[peso]
+        current_time = arr
+        if v in destinos:
+            inicio_jogo = jogos.loc[jogos['Estádio'] == v, 'datetime'].iloc[0]
+            print(f"Chegada a {v} às {arr.strftime('%H:%M')}, jogo às {inicio_jogo.strftime('%H:%M')}.")
+            if arr < inicio_jogo:
+                espera = int((inicio_jogo - arr).total_seconds() / 60)
+                print(f"Aguardando {espera} min até o jogo.")
+                if peso == 'tempo_min':
+                    total += espera + DURACAO_JOGO_MIN
+                current_time = inicio_jogo + timedelta(minutes=DURACAO_JOGO_MIN)
+            else:
+                print("Chegada em atraso, participação parcial.")
+                if peso == 'tempo_min':
+                    total += DURACAO_JOGO_MIN
+                current_time = arr + timedelta(minutes=DURACAO_JOGO_MIN)
+
+    # Verificação de conflitos (gera_percurso não reusa destinos, mas mantida para casos...)
+    i = 0
+    while i < len(destinos) - 1:
+        est1, est2 = destinos[i], destinos[i+1]
+        dt_fim = (
+            jogos.loc[jogos['Estádio']==est1, 'datetime'].iloc[0]
+            + timedelta(minutes=DURACAO_JOGO_MIN)
+        )
+        dt_inicio = jogos.loc[jogos['Estádio']==est2, 'datetime'].iloc[0]
+        if dt_inicio.date() != dt_fim.date():
+            i += 1
+            continue
+        disponivel = (dt_inicio - dt_fim).total_seconds() / 60
+        try:
+            viagem = nx.shortest_path_length(G, source=est1, target=est2, weight='tempo_min')
+        except nx.NetworkXNoPath:
+            viagem = float('inf')
+        if disponivel < viagem:
+            print(f"Conflito: não dá para assistir {est1} e depois {est2} "
+                  f"(disponível: {int(disponivel)} min, viagem: {int(viagem)} min)")
+            break
+        i += 1
+
+    print("\nResumo de imprevistos:")
+    if imprevistos_msgs:
+        for m in imprevistos_msgs:
+            print(f" - {m}")
+    else:
+        print("Nenhum imprevisto ocorreu.")
+
+    print("\nPercurso detalhado:")
+    for u, v, transp, dep, arr, tm, pr, co in detalhes:
+        print(f"{u}->{v} | {transp} | saída {dep.strftime('%H:%M')} | chegada {arr.strftime('%H:%M')} | tempo {tm} | preço {pr} | CO2 {co}")
+    labels = {'tempo_min': 'Tempo (min)', 'preco_eur': 'Custo (EUR)', 'emissoes_co2': 'Emissões (g CO2)'}
+    print(f"\n{labels[peso]} total: {total}")
+
+# Wrappers
+def mais_rapido(origem, destinos, num_pessoas):
+    gerar_percurso(origem, destinos, num_pessoas, 'tempo_min')
+
+def mais_barato(origem, destinos, num_pessoas):
+    gerar_percurso(origem, destinos, num_pessoas, 'preco_eur')
+
+def mais_ecologico(origem, destinos, num_pessoas):
+    gerar_percurso(origem, destinos, num_pessoas, 'emissoes_co2')
+
+# Funções de busca para comparação de algoritmos
+def dfs_path(graph, source, target):
+    visited = set()
+    path = []
+    def dfs(u):
+        if u == target:
+            return True
+        visited.add(u)
+        for v in graph.neighbors(u):
+            if v not in visited:
+                path.append((u, v))
+                if dfs(v):
+                    return True
+                path.pop()
+        return False
+    dfs(source)
+    return [source] + [v for _, v in path]
+
+ALGOS = {
+    1: ('DFS', dfs_path),
+    2: ('BFS', lambda G, s, t: next(nx.shortest_simple_paths(G, source=s, target=t), [])),
+    3: ('UCS', lambda G, s, t: nx.dijkstra_path(G, source=s, target=t, weight='tempo_min')),
+    4: ('Greedy', lambda G, s, t: nx.astar_path(G, source=s, target=t, heuristic=lambda u, v: 0, weight='tempo_min')),
+    5: ('A*', lambda G, s, t: nx.astar_path(G, source=s, target=t, heuristic=lambda u, v: 0, weight='tempo_min'))
+}
+
+def calcular_custo(graph, path, peso):
+    total = 0
+    for u, v in zip(path, path[1:]):
+        data = graph.get_edge_data(u, v)
+        melhor = min(data.values(), key=lambda d: d[peso])
+        total += melhor[peso]
+    return total
+
+def comparar_algoritmos():
+    escolha = """
+1.DFS
+2.BFS
+3.UCS
+4.Greedy
+5.A*
+Escolha o primeiro algoritmo: """
+    a1 = int(input(escolha))
+    while a1 not in ALGOS:
+        a1 = int(input("Insira um número de 1 a 5: "))
+    a2 = int(input("Escolha o segundo algoritmo (1-5), diferente do primeiro: "))
+    while a2 not in ALGOS or a2 == a1:
+        a2 = int(input("Insira um valor válido e diferente do primeiro: "))
+    nome1, func1 = ALGOS[a1]
+    nome2, func2 = ALGOS[a2]
+    print(f"Algoritmos selecionados: {nome1} e {nome2}")
+
+    origem = input("Origem: ")
+    destino = input("Destino: ")
+    peso = input("Peso para comparação (tempo_min, preco_eur ou emissoes_co2): ")
+
+    start1 = time.perf_counter()
+    path1 = func1(G, origem, destino)
+    end1 = time.perf_counter()
+    custo1 = calcular_custo(G, path1, peso)
+
+    start2 = time.perf_counter()
+    path2 = func2(G, origem, destino)
+    end2 = time.perf_counter()
+    custo2 = calcular_custo(G, path2, peso)
+
+    print(f"\nResultado {nome1}:")
+    print(f"  Percurso: {path1}\n  Custo total ({peso}): {custo1}\n  Tempo de execução: {(end1-start1)*1000:.2f} ms")
+    print(f"\nResultado {nome2}:")
+    print(f"  Percurso: {path2}\n  Custo total ({peso}): {custo2}\n  Tempo de execução: {(end2-start2)*1000:.2f} ms")
+
+def simular_percurso():
+    pessoas = input("Insira o número de pessoas (1-100): ")
+    while not pessoas.isdigit() or int(pessoas) < 1 or int(pessoas) > 100:
+        pessoas = input("Valor inválido. Digite um número entre 1 e 100: ")
+    num = int(pessoas)
+
+    escolha = """
+1.Caminho mais rápido
+2.Caminho mais barato
+3.Caminho mais ecológico
+Escolha: """
+    pri = input(escolha)
+    while pri not in ['1', '2', '3']:
+        pri = input("Opção inválida. Escolha 1, 2 ou 3: ")
+    pri = int(pri)
+
+    print(jogos[['Jogo_id', 'Estádio', 'Dia', 'Hora']].to_string(index=False))
+    ids = input("IDs dos jogos (separados por vírgula): ")
+    validos = set(jogos['Jogo_id'])
+    lista = [int(i) for i in ids.split(',') if i.strip().isdigit()]
+    while not lista or any(i not in validos for i in lista):
+        ids = input("IDs inválidos. Tente novamente: ")
+        lista = [int(i) for i in ids.split(',') if i.strip().isdigit()]
+    destinos = list(jogos[jogos['Jogo_id'].isin(lista)]['Estádio'])
+    destinos.sort(key=lambda est: jogos.loc[jogos['Estádio']==est, 'datetime'].iloc[0])
+
+    # Verificação de conflitos (corrigida)
+    i = 0
+    while i < len(destinos) - 1:
+        est1, est2 = destinos[i], destinos[i+1]
+        dt_fim = (
+            jogos.loc[jogos['Estádio']==est1, 'datetime'].iloc[0]
+            + timedelta(minutes=DURACAO_JOGO_MIN)
+        )
+        dt_inicio = jogos.loc[jogos['Estádio']==est2, 'datetime'].iloc[0]
+
+        if dt_inicio.date() != dt_fim.date():
+            i += 1
+            continue
+
+        disponivel = (dt_inicio - dt_fim).total_seconds() / 60
+        try:
+            viagem = nx.shortest_path_length(G, source=est1, target=est2, weight='tempo_min')
+        except nx.NetworkXNoPath:
+            viagem = float('inf')
+
+        if disponivel < viagem:
+            print(
+                f"Conflito: não dá para assistir {est1} e depois {est2} "
+                f"(disponível: {int(disponivel)} min, viagem: {int(viagem)} min)"
+            )
+            drop = input(f"Digite 1 para remover {est1}, 2 para remover {est2}: ")
+            while drop not in ['1', '2']:
+                drop = input("Opção inválida. Escolha 1 ou 2: ")
+            destinos.pop(i if drop=='1' else i+1)
+            i = 0
+        else:
+            i += 1
+
+    print("Destinos finais:", destinos)
+    print("Pontos de partida disponíveis:", list(G.nodes))
+
+    origem = input("Indique o ponto de partida: ")
+    while origem not in G.nodes:
+        origem = input("Ponto inválido. Tente novamente: ")
+
+    if pri == 1:
+        mais_rapido(origem, destinos, num)
+    elif pri == 2:
+        mais_barato(origem, destinos, num)
+    else:
+        mais_ecologico(origem, destinos, num)
+
+# Menu principal
+menu = input("\nSimula o teu percurso\n0.Encerrar\n1.Consultar Jogos\n2.Simular o meu percurso\n3.Comparar algoritmos\nEscolha: ")
+while menu != '0':
+    if menu == '1':
+        print(jogos[['Jogo_id', 'Estádio', 'Dia', 'Hora']].to_string(index=False))
+    elif menu == '2':
+        simular_percurso()
+    elif menu == '3':
+        comparar_algoritmos()
+    else:
+        print("Opção inválida.")
+    menu = input("\nSimula o teu percurso\n0.Encerrar\n1.Consultar Jogos\n2.Simular o meu percurso\n3.Comparar algoritmos\nEscolha: ")
+print("Programa encerrado")
