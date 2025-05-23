@@ -1,0 +1,25 @@
+Jogo_id,Fase,Jogo,Dia,Hora,Estádio,Cidade,País
+01,16 Avos de Final,Jogo 1,02/07/2030,15:00,Estádio Ibn Batouta,Tânger,Marrocos
+02,16 Avos de Final,Jogo 2,02/07/2030,19:00,Estádio Metropolitano,Madrid,Espanha
+03,16 Avos de Final,Jogo 3,03/07/2030,15:00,Estádio do Dragão,Porto,Portugal
+04,16 Avos de Final,Jogo 4,03/07/2030,19:00,Estádio Metropolitano,Madrid,Espanha
+05,16 Avos de Final,Jogo 5,04/07/2030,15:00,Estádio José Alvalade,Lisboa,Portugal
+06,16 Avos de Final,Jogo 6,04/07/2030,19:00,Estádio de Fez,Fez,Marrocos
+07,16 Avos de Final,Jogo 7,04/07/2030,21:00,Estádio La Cartuja,Sevilha,Espanha
+08,16 Avos de Final,Jogo 8,04/07/2030,22:00,Estádio Hassan II,Casablanca,Marrocos
+09,Oitavos de Final,Jogo 1,07/07/2030,15:00,Estádio Ibn Batouta,Tânger,Marrocos
+10,Oitavos de Final,Jogo 2,07/07/2030,19:00,Estádio La Cartuja,Sevilha,Espanha
+11,Oitavos de Final,Jogo 3,08/07/2030,15:00,Estádio do Dragão,Porto,Portugal
+12,Oitavos de Final,Jogo 4,08/07/2030,19:00,Estádio La Cartuja,Sevilha,Espanha
+13,Oitavos de Final,Jogo 5,09/07/2030,15:00,Estádio da Luz,Lisboa,Portugal
+14,Oitavos de Final,Jogo 6,09/07/2030,17:00,Estádio Adrar,Agadir,Marrocos
+15,Oitavos de Final,Jogo 7,09/07/2030,19:00,Estádio Metropolitano,Madrid,Espanha
+16,Oitavos de Final,Jogo 8,09/07/2030,21:00,Estádio Hassan II,Casablanca,Marrocos
+17,Quartos de Final,Jogo 1,12/07/2030,15:00,Estádio Ibn Batouta,Tânger,Marrocos
+18,Quartos de Final,Jogo 2,12/07/2030,19:00,Estádio Santiago Bernabéu,Madrid,Espanha
+19,Quartos de Final,Jogo 3,13/07/2030,15:00,Estádio José Alvalade,Lisboa,Portugal
+20,Quartos de Final,Jogo 4,13/07/2030,19:00,Estádio Santiago Bernabéu,Madrid,Espanha
+21,Semifinais,Jogo 1,16/07/2030,19:00,Estádio da Luz,Lisboa,Portugal
+22,Semifinais,Jogo 2,17/07/2030,19:00,Estádio Adrar,Agadir,Marrocos
+23,Disputa pelo 3º Lugar,Jogo 1,20/07/2030,15:00,Estádio Ibn Batouta,Tânger,Marrocos
+24,Final,Jogo 1,21/07/2030,16:00,Estádio Hassan II,Casablanca,Marrocos

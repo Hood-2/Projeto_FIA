@@ -1,0 +1,213 @@
+origem,destino,transporte,tempo_min,preco_eur,capacidade,emissoes_co2,hora_partida
+Estádio Ibn Batouta,Estação Tânger Ville,autocarro,15,0.50,50,15,07:00
+Estádio Ibn Batouta,Estação Tânger Ville,autocarro,15,0.50,50,15,07:30
+Estádio Ibn Batouta,Estação Tânger Ville,autocarro,15,0.50,50,15,08:00
+Estádio Ibn Batouta,Estação Tânger Ville,autocarro,15,0.50,50,15,08:30
+Estação Tânger Ville,Estádio Ibn Batouta,autocarro,15,0.50,50,15,07:15
+Estação Tânger Ville,Estádio Ibn Batouta,autocarro,15,0.50,50,15,07:45
+Estação Tânger Ville,Estádio Ibn Batouta,autocarro,15,0.50,50,15,08:15
+Estação Tânger Ville,Estádio Ibn Batouta,autocarro,15,0.50,50,15,08:45
+Estádio Ibn Batouta,Aeroporto de Tânger,autocarro,25,1.20,50,30,07:00
+Estádio Ibn Batouta,Aeroporto de Tânger,autocarro,25,1.20,50,30,08:00
+Aeroporto de Tânger,Estádio Ibn Batouta,autocarro,25,1.20,50,30,07:30
+Aeroporto de Tânger,Estádio Ibn Batouta,autocarro,25,1.20,50,30,08:30
+Estádio Metropolitano,Estação Atocha,metro,30,1.50,300,8,07:00
+Estádio Metropolitano,Estação Atocha,metro,30,1.50,300,8,07:15
+Estádio Metropolitano,Estação Atocha,metro,30,1.50,300,8,07:30
+Estação Atocha,Estádio Metropolitano,metro,30,1.50,300,8,07:00
+Estação Atocha,Estádio Metropolitano,metro,30,1.50,300,8,07:15
+Estação Atocha,Estádio Metropolitano,metro,30,1.50,300,8,07:30
+Estádio Metropolitano,Estação Atocha,autocarro,35,1.50,50,15,07:00
+Estádio Metropolitano,Estação Atocha,autocarro,35,1.50,50,15,07:30
+Estação Atocha,Estádio Metropolitano,autocarro,35,1.50,50,15,07:15
+Estação Atocha,Estádio Metropolitano,autocarro,35,1.50,50,15,07:45
+Estádio Metropolitano,Aeroporto de Madrid,autocarro,40,5.00,50,40,07:00
+Estádio Metropolitano,Aeroporto de Madrid,autocarro,40,5.00,50,40,08:00
+Aeroporto de Madrid,Estádio Metropolitano,autocarro,40,5.00,50,40,07:30
+Aeroporto de Madrid,Estádio Metropolitano,autocarro,40,5.00,50,40,08:30
+Estádio do Dragão,Estação Porto-Campanhã,metro,10,1.80,300,3,07:00
+Estádio do Dragão,Estação Porto-Campanhã,metro,10,1.80,300,3,07:15
+Estação Porto-Campanhã,Estádio do Dragão,metro,10,1.80,300,3,07:10
+Estação Porto-Campanhã,Estádio do Dragão,metro,10,1.80,300,3,07:25
+Estádio do Dragão,Estação Porto-Campanhã,elétrico,12,2.00,100,3,07:05
+Estádio do Dragão,Estação Porto-Campanhã,elétrico,12,2.00,100,3,07:35
+Estação Porto-Campanhã,Estádio do Dragão,elétrico,12,2.00,100,3,07:20
+Estação Porto-Campanhã,Estádio do Dragão,elétrico,12,2.00,100,3,07:50
+Estádio do Dragão,Estação Porto-Campanhã,autocarro,15,2.00,50,10,07:00
+Estádio do Dragão,Estação Porto-Campanhã,autocarro,15,2.00,50,10,07:30
+Estação Porto-Campanhã,Estádio do Dragão,autocarro,15,2.00,50,10,07:15
+Estação Porto-Campanhã,Estádio do Dragão,autocarro,15,2.00,50,10,07:45
+Estádio José Alvalade,Estação Oriente,metro,18,1.65,300,8,07:00
+Estádio José Alvalade,Estação Oriente,metro,18,1.65,300,8,07:10
+Estação Oriente,Estádio José Alvalade,metro,18,1.65,300,8,07:05
+Estação Oriente,Estádio José Alvalade,metro,18,1.65,300,8,07:15
+Estádio José Alvalade,Estação Oriente,autocarro,25,2.00,50,12,07:00
+Estádio José Alvalade,Estação Oriente,autocarro,25,2.00,50,12,07:30
+Estação Oriente,Estádio José Alvalade,autocarro,25,2.00,50,12,07:10
+Estação Oriente,Estádio José Alvalade,autocarro,25,2.00,50,12,07:40
+Estádio José Alvalade,Aeroporto de Lisboa,autocarro,30,2.00,50,15,07:00
+Estádio José Alvalade,Aeroporto de Lisboa,autocarro,30,2.00,50,15,08:00
+Aeroporto de Lisboa,Estádio José Alvalade,autocarro,30,2.00,50,15,07:30
+Aeroporto de Lisboa,Estádio José Alvalade,autocarro,30,2.00,50,15,08:30
+Estádio de Fez,Estação de Fez,autocarro,20,1.00,50,10,07:00
+Estádio de Fez,Estação de Fez,autocarro,20,1.00,50,10,07:30
+Estação de Fez,Estádio de Fez,autocarro,20,1.00,50,10,07:15
+Estação de Fez,Estádio de Fez,autocarro,20,1.00,50,10,07:45
+Estádio La Cartuja,Estação Santa Justa,metro,15,1.40,300,5,07:00
+Estádio La Cartuja,Estação Santa Justa,metro,15,1.40,300,5,07:15
+Estação Santa Justa,Estádio La Cartuja,metro,15,1.40,300,5,07:00
+Estação Santa Justa,Estádio La Cartuja,metro,15,1.40,300,5,07:15
+Estádio La Cartuja,Estação Santa Justa,autocarro,18,1.50,50,8,07:00
+Estádio La Cartuja,Estação Santa Justa,autocarro,18,1.50,50,8,07:30
+Estação Santa Justa,Estádio La Cartuja,autocarro,18,1.50,50,8,07:15
+Estação Santa Justa,Estádio La Cartuja,autocarro,18,1.50,50,8,07:45
+Estádio La Cartuja,Aeroporto de Sevilha,autocarro,25,2.00,50,12,07:00
+Estádio La Cartuja,Aeroporto de Sevilha,autocarro,25,2.00,50,12,08:00
+Aeroporto de Sevilha,Estádio La Cartuja,autocarro,25,2.00,50,12,07:30
+Aeroporto de Sevilha,Estádio La Cartuja,autocarro,25,2.00,50,12,08:30
+Estádio Hassan II,Aeroporto Mohammed V,autocarro,20,1.00,50,10,07:00
+Estádio Hassan II,Aeroporto Mohammed V,autocarro,20,1.00,50,10,08:00
+Aeroporto Mohammed V,Estádio Hassan II,autocarro,20,1.00,50,10,07:30
+Aeroporto Mohammed V,Estádio Hassan II,autocarro,20,1.00,50,10,08:30
+Estádio Adrar,Estação de Agadir,autocarro,15,1.00,50,8,07:00
+Estádio Adrar,Estação de Agadir,autocarro,15,1.00,50,8,07:30
+Estação de Agadir,Estádio Adrar,autocarro,15,1.00,50,8,07:15
+Estação de Agadir,Estádio Adrar,autocarro,15,1.00,50,8,07:45
+Estádio da Luz,Estação Oriente,metro,12,1.65,300,8,07:00
+Estádio da Luz,Estação Oriente,metro,12,1.65,300,8,07:10
+Estação Oriente,Estádio da Luz,metro,12,1.65,300,8,07:05
+Estação Oriente,Estádio da Luz,metro,12,1.65,300,8,07:15
+Estádio da Luz,Estação Oriente,autocarro,20,2.00,50,10,07:00
+Estádio da Luz,Estação Oriente,autocarro,20,2.00,50,10,07:30
+Estação Oriente,Estádio da Luz,autocarro,20,2.00,50,10,07:10
+Estação Oriente,Estádio da Luz,autocarro,20,2.00,50,10,07:40
+Estádio da Luz,Aeroporto de Lisboa,autocarro,25,2.00,50,12,07:00
+Estádio da Luz,Aeroporto de Lisboa,autocarro,25,2.00,50,12,08:00
+Aeroporto de Lisboa,Estádio da Luz,autocarro,25,2.00,50,12,07:30
+Aeroporto de Lisboa,Estádio da Luz,autocarro,25,2.00,50,12,08:30
+Estádio Santiago Bernabéu,Estação Atocha,metro,20,1.50,300,6,07:00
+Estádio Santiago Bernabéu,Estação Atocha,metro,20,1.50,300,6,07:15
+Estação Atocha,Estádio Santiago Bernabéu,metro,20,1.50,300,6,07:10
+Estação Atocha,Estádio Santiago Bernabéu,metro,20,1.50,300,6,07:25
+Estádio Santiago Bernabéu,Estação Atocha,autocarro,25,1.50,50,10,07:00
+Estádio Santiago Bernabéu,Estação Atocha,autocarro,25,1.50,50,10,07:30
+Estação Atocha,Estádio Santiago Bernabéu,autocarro,25,1.50,50,10,07:10
+Estação Atocha,Estádio Santiago Bernabéu,autocarro,25,1.50,50,10,07:40
+Estádio Santiago Bernabéu,Aeroporto de Madrid,autocarro,35,5.00,50,30,07:00
+Estádio Santiago Bernabéu,Aeroporto de Madrid,autocarro,35,5.00,50,30,08:00
+Aeroporto de Madrid,Estádio Santiago Bernabéu,autocarro,35,5.00,50,30,07:30
+Aeroporto de Madrid,Estádio Santiago Bernabéu,autocarro,35,5.00,50,30,08:30
+Estação Tânger Ville,Aeroporto de Tânger,autocarro,20,1.20,50,15,07:00
+Estação Tânger Ville,Aeroporto de Tânger,autocarro,20,1.20,50,15,08:00
+Aeroporto de Tânger,Estação Tânger Ville,autocarro,20,1.20,50,15,07:30
+Aeroporto de Tânger,Estação Tânger Ville,autocarro,20,1.20,50,15,08:30
+Estação Porto-Campanhã,Estação Oriente,comboio,195,30.00,200,8250,07:15
+Estação Porto-Campanhã,Estação Oriente,comboio,195,30.00,200,8250,09:00
+Estação Porto-Campanhã,Estação Oriente,comboio,195,30.00,200,8250,10:30
+Estação Oriente,Estação Porto-Campanhã,comboio,195,30.00,200,8250,07:15
+Estação Oriente,Estação Porto-Campanhã,comboio,195,30.00,200,8250,09:00
+Estação Oriente,Estação Porto-Campanhã,comboio,195,30.00,200,8250,10:30
+Estação Oriente,Estação Atocha,comboio,600,60.00,200,15625,08:00
+Estação Oriente,Estação Atocha,comboio,600,60.00,200,15625,09:25
+Estação Oriente,Estação Atocha,comboio,600,60.00,200,15625,14:30
+Estação Atocha,Estação Oriente,comboio,600,60.00,200,15625,09:00
+Estação Atocha,Estação Oriente,comboio,600,60.00,200,15625,10:25
+Estação Atocha,Estação Oriente,comboio,600,60.00,200,15625,15:30
+Estação Oriente,Estação Atocha,autocarro,540,35.00,50,11250,07:00
+Estação Oriente,Estação Atocha,autocarro,540,35.00,50,11250,08:00
+Estação Atocha,Estação Oriente,autocarro,540,35.00,50,11250,07:30
+Estação Atocha,Estação Oriente,autocarro,540,35.00,50,11250,08:30
+Estação Atocha,Estação Santa Justa,comboio,150,25.00,200,3750,07:00
+Estação Atocha,Estação Santa Justa,comboio,150,25.00,200,3750,09:00
+Estação Atocha,Estação Santa Justa,comboio,150,25.00,200,3750,11:00
+Estação Santa Justa,Estação Atocha,comboio,150,25.00,200,3750,07:30
+Estação Santa Justa,Estação Atocha,comboio,150,25.00,200,3750,09:30
+Estação Santa Justa,Estação Atocha,comboio,150,25.00,200,3750,11:30
+Estação Santa Justa,Estação de Fez,comboio,420,45.00,200,10500,08:00
+Estação Santa Justa,Estação de Fez,comboio,420,45.00,200,10500,12:00
+Estação de Fez,Estação Santa Justa,comboio,420,45.00,200,10500,09:00
+Estação de Fez,Estação Santa Justa,comboio,420,45.00,200,10500,13:00
+Estação de Fez,Estação Tânger Ville,comboio,210,15.00,200,5250,08:00
+Estação de Fez,Estação Tânger Ville,comboio,210,15.00,200,5250,09:30
+Estação de Fez,Estação Tânger Ville,comboio,210,15.00,200,5250,11:00
+Estação Tânger Ville,Estação de Fez,comboio,210,15.00,200,5250,08:30
+Estação Tânger Ville,Estação de Fez,comboio,210,15.00,200,5250,10:00
+Estação Tânger Ville,Estação de Fez,comboio,210,15.00,200,5250,11:30
+Estação de Fez,Estação de Agadir,comboio,480,50.00,200,12000,07:00
+Estação de Fez,Estação de Agadir,comboio,480,50.00,200,12000,09:00
+Estação de Agadir,Estação de Fez,comboio,480,50.00,200,12000,08:00
+Estação de Agadir,Estação de Fez,comboio,480,50.00,200,12000,10:00
+Estação Porto-Campanhã,Estação de Agadir,comboio,720,70.00,200,18000,06:30
+Estação Porto-Campanhã,Estação de Agadir,comboio,720,70.00,200,18000,08:30
+Estação de Agadir,Estação Porto-Campanhã,comboio,720,70.00,200,18000,07:30
+Estação de Agadir,Estação Porto-Campanhã,comboio,720,70.00,200,18000,09:30
+Aeroporto de Lisboa,Aeroporto de Madrid,avião,75,120.00,150,45000,08:00
+Aeroporto de Lisboa,Aeroporto de Madrid,avião,75,120.00,150,45000,13:00
+Aeroporto de Lisboa,Aeroporto de Madrid,avião,75,120.00,150,45000,18:00
+Aeroporto de Madrid,Aeroporto de Lisboa,avião,75,120.00,150,45000,09:30
+Aeroporto de Madrid,Aeroporto de Lisboa,avião,75,120.00,150,45000,14:30
+Aeroporto de Madrid,Aeroporto de Lisboa,avião,75,120.00,150,45000,19:30
+Aeroporto de Lisboa,Aeroporto Mohammed V,avião,85,130.00,150,55800,09:00
+Aeroporto de Lisboa,Aeroporto Mohammed V,avião,85,130.00,150,55800,15:00
+Aeroporto Mohammed V,Aeroporto de Lisboa,avião,85,130.00,150,55800,10:30
+Aeroporto Mohammed V,Aeroporto de Lisboa,avião,85,130.00,150,55800,16:30
+Aeroporto de Lisboa,Aeroporto de Tânger,avião,65,110.00,150,42300,10:00
+Aeroporto de Lisboa,Aeroporto de Tânger,avião,65,110.00,150,42300,17:00
+Aeroporto de Tânger,Aeroporto de Lisboa,avião,65,110.00,150,42300,12:00
+Aeroporto de Tânger,Aeroporto de Lisboa,avião,65,110.00,150,42300,19:00
+Aeroporto de Lisboa,Aeroporto de Sevilha,avião,55,100.00,150,36000,09:00
+Aeroporto de Lisboa,Aeroporto de Sevilha,avião,55,100.00,150,36000,15:00
+Aeroporto de Sevilha,Aeroporto de Lisboa,avião,55,100.00,150,36000,10:30
+Aeroporto de Sevilha,Aeroporto de Lisboa,avião,55,100.00,150,36000,16:30
+Aeroporto de Lisboa,Aeroporto de Agadir,avião,110,150.00,150,81000,07:00
+Aeroporto de Lisboa,Aeroporto de Agadir,avião,110,150.00,150,81000,14:00
+Aeroporto de Agadir,Aeroporto de Lisboa,avião,110,150.00,150,81000,08:30
+Aeroporto de Agadir,Aeroporto de Lisboa,avião,110,150.00,150,81000,15:30
+Aeroporto de Madrid,Aeroporto Mohammed V,avião,120,140.00,150,94500,09:00
+Aeroporto de Madrid,Aeroporto Mohammed V,avião,120,140.00,150,94500,15:00
+Aeroporto Mohammed V,Aeroporto de Madrid,avião,120,140.00,150,94500,10:30
+Aeroporto Mohammed V,Aeroporto de Madrid,avião,120,140.00,150,94500,16:30
+Aeroporto de Madrid,Aeroporto de Tânger,avião,65,100.00,150,51300,10:00
+Aeroporto de Madrid,Aeroporto de Tânger,avião,65,100.00,150,51300,17:00
+Aeroporto de Tânger,Aeroporto de Madrid,avião,65,100.00,150,51300,12:00
+Aeroporto de Tânger,Aeroporto de Madrid,avião,65,100.00,150,51300,19:00
+Aeroporto de Madrid,Aeroporto de Sevilha,avião,45,90.00,150,35100,09:00
+Aeroporto de Madrid,Aeroporto de Sevilha,avião,45,90.00,150,35100,15:00
+Aeroporto de Sevilha,Aeroporto de Madrid,avião,45,90.00,150,35100,10:30
+Aeroporto de Sevilha,Aeroporto de Madrid,avião,45,90.00,150,35100,16:30
+Aeroporto de Madrid,Aeroporto de Agadir,avião,130,160.00,150,99000,07:00
+Aeroporto de Madrid,Aeroporto de Agadir,avião,130,160.00,150,99000,14:00
+Aeroporto de Agadir,Aeroporto de Madrid,avião,130,160.00,150,99000,08:30
+Aeroporto de Agadir,Aeroporto de Madrid,avião,130,160.00,150,99000,15:30
+Aeroporto Mohammed V,Aeroporto de Tânger,avião,40,80.00,150,30600,08:00
+Aeroporto Mohammed V,Aeroporto de Tânger,avião,40,80.00,150,30600,12:00
+Aeroporto de Tânger,Aeroporto Mohammed V,avião,40,80.00,150,30600,09:30
+Aeroporto de Tânger,Aeroporto Mohammed V,avião,40,80.00,150,30600,13:30
+Aeroporto Mohammed V,Aeroporto de Agadir,avião,55,90.00,150,42300,07:00
+Aeroporto Mohammed V,Aeroporto de Agadir,avião,55,90.00,150,42300,14:00
+Aeroporto de Agadir,Aeroporto Mohammed V,avião,55,90.00,150,42300,08:30
+Aeroporto de Agadir,Aeroporto Mohammed V,avião,55,90.00,150,42300,15:30
+Aeroporto de Tânger,Aeroporto de Agadir,avião,85,120.00,150,70200,09:00
+Aeroporto de Tânger,Aeroporto de Agadir,avião,85,120.00,150,70200,15:00
+Aeroporto de Agadir,Aeroporto de Tânger,avião,85,120.00,150,70200,10:30
+Aeroporto de Agadir,Aeroporto de Tânger,avião,85,120.00,150,70200,16:30
+Aeroporto de Lisboa,Estação Oriente,metro,20,1.65,300,8,07:00
+Aeroporto de Lisboa,Estação Oriente,metro,20,1.65,300,8,07:10
+Estação Oriente,Aeroporto de Lisboa,metro,20,1.65,300,8,07:05
+Estação Oriente,Aeroporto de Lisboa,metro,20,1.65,300,8,07:15
+Aeroporto de Lisboa,Estação Oriente,autocarro,25,2.00,50,12,07:00
+Aeroporto de Lisboa,Estação Oriente,autocarro,25,2.00,50,12,07:30
+Estação Oriente,Aeroporto de Lisboa,autocarro,25,2.00,50,12,07:10
+Estação Oriente,Aeroporto de Lisboa,autocarro,25,2.00,50,12,07:40
+Aeroporto de Lisboa,Estação Porto-Campanhã,autocarro,210,20.00,50,3780,08:00
+Aeroporto de Lisboa,Estação Porto-Campanhã,autocarro,210,20.00,50,3780,10:00
+Estação Porto-Campanhã,Aeroporto de Lisboa,autocarro,210,20.00,50,3780,09:00
+Estação Porto-Campanhã,Aeroporto de Lisboa,autocarro,210,20.00,50,3780,11:00
+Aeroporto Mohammed V,Estação de Agadir,autocarro,240,22.00,50,4320,07:00
+Aeroporto Mohammed V,Estação de Agadir,autocarro,240,22.00,50,4320,09:00
+Estação de Agadir,Aeroporto Mohammed V,autocarro,240,22.00,50,4320,08:00
+Estação de Agadir,Aeroporto Mohammed V,autocarro,240,22.00,50,4320,10:00
+Aeroporto de Tânger,Estação de Fez,autocarro,240,22.00,50,4320,07:00
+Aeroporto de Tânger,Estação de Fez,autocarro,240,22.00,50,4320,09:00
+Estação de Fez,Aeroporto de Tânger,autocarro,240,22.00,50,4320,08:00
+Estação de Fez,Aeroporto de Tânger,autocarro,240,22.00,50,4320,10:00
