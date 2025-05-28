@@ -180,7 +180,7 @@ def dfs_path(graph, source, target):
 
 ALGOS = {
     1: ('DFS', dfs_path),
-    2: ('BFS', lambda G, s, t: next(nx.shortest_simple_paths(G, source=s, target=t), [])),
+    2: ('BFS', lambda G, s, t: nx.shortest_path(G, source=s, target=t, weight='tempo_min')),
     3: ('UCS', lambda G, s, t: nx.dijkstra_path(G, source=s, target=t, weight='tempo_min')),
     4: ('Greedy', lambda G, s, t: nx.astar_path(G, source=s, target=t, heuristic=lambda u, v: 0, weight='tempo_min')),
     5: ('A*', lambda G, s, t: nx.astar_path(G, source=s, target=t, heuristic=lambda u, v: 0, weight='tempo_min'))
